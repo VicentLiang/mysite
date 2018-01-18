@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Reporters for all{% endblock %}
+
+{% block content %}
+<h1>Reporters for all</h1>
+<h2><a href="{% url 'reporter_add' %}">新增</a></h2>
+<table cellpadding="1" cellspacing="1" WIDTH="80%">
+    <tr>
+        <td>Name</td>
+    </tr>
+{% for reporter in list %}
+    <tr>
+        <td>{{ reporter.full_name }}</td>
+        <td>
+            <a href="{% url 'reporter_change' reporter.id %}">修改</a>
+            <a href="{% url 'reporter_delete' reporter.id %}">删除</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

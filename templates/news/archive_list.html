@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Articles for all{% endblock %}
+
+{% block content %}
+<h1>Articles for all</h1>
+<h2><a href="{% url 'article_add' %}">新增</a></h2>
+<table cellpadding="1" cellspacing="1" WIDTH="80%">
+    <tr>
+        <td>Headline</td>
+        <td>Author</td>
+        <td>Published</td>
+         <td>Content</td>
+        <td>operation</td>
+    </tr>
+{% for article in list %}
+    <tr>
+        <td>{{ article.headline }}</td>
+        <td>{{ article.reporter.full_name }}</td>
+        <!-- <td>{{ article.pub_date|date:"F j, Y" }}</td> -->
+        <td>{{ article.pub_date|date:"Y-m-d" }}</td>
+        <td>{{ article.content }}</td>
+        <td>
+            <a href="{% url 'article_change' article.id %}">修改</a>
+            <a href="{% url 'article_delete' article.id %}">删除</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

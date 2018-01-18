@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Articles for saving {% endblock %}
+
+{% block content %}
+<h1>Articles for saving </h1>
+<form action="{% if form.id %} {% url 'article_change' form.id %} {% else %} {% url 'article_add' %} {% endif %}" method="post">
+    {% csrf_token %}
+<!--    <p><label for="id_headline">Headline:</label>
+        <input id="id_headline" type="text" name="headline" maxlength="200" value="{{ article.headline }}" required /></p>
+    <p><label for="id_reporter">Reporter:</label>
+        <select id="id_reporter" name="full_name" maxlength="70" >
+            {% for reporter in reporter_list %}
+                <option value="{{ reporter.id }}" {% if reporter.id == article.reporter.id %} selected {% endif %}>
+                    {{ reporter.full_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+    <p><label for="id_pub_date">Published:</label>
+        <input type="text" name="pub_date" id="id_pub_date" value="{{ article.pub_date|date:'Y-m-d' }}" required /></p>
+    <p><label for="id_content">Content:</label>
+        <textarea name="content" id="id_content" required>{{ article.content }}</textarea></p>-->
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+{% endblock %}
